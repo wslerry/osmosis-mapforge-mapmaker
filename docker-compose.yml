@@ -1,0 +1,17 @@
+services:
+  osmosis:
+    build:
+      context: ./osmosis
+      dockerfile: Dockerfile
+    image: lerryws/osmosis:latest
+    container_name: osmosis
+    volumes:
+      - ./data/input:/data/input
+      - ./data/output:/data/output
+    environment:
+      - OSM_FILE=borneo-latest.osm.pbf
+      - MAPFORGE_MAP_FILE=borneo.map
+      - MAPFORGE_POI_FILE=borneo.poi
+      - BBOX=-7.1986095,104.571669609,8.3333731,140.6130556  # ymin,xmin,ymax,xmax
+      - JAVACMD_OPTIONS=-Xmx8g -Xms8g  # Example: 1.5 GB pbf size, -> 1.5*2*2=6. Xmx AT LEAST `-Xmx6g`
+      - CPU_THREADS=6
