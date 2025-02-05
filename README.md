@@ -2,18 +2,9 @@
 
 Generate offline map for android using osmosis
 
-## Usage
-
-1. Build
-    - `docker compose build`
-2. Run osmosis
-    - `docker compose up`
-    - or `docker compose up osmosis`
-3. Remove container
-    - `docker compose down`
-
 ## Notes
 
+- We expect you already have your OSM data ready.
 - Make sure to save your `.pbf` or `.osm` file inside `./data/input`. 
 - Change `environment` variables in `docker-compose.yml` to suites your usage or machine capabilities.
     ```yml
@@ -34,3 +25,15 @@ Generate offline map for android using osmosis
         .
 
     ```
+
+## Usage
+
+Change `docker-compose.template` into `docker-compose.yml` before running `docker compose` command
+
+1. Build
+    - `docker compose build`
+2. Run osmosis
+    - `docker compose up`
+    - or `docker compose up osmosis`
+3. Remove container
+    - `docker compose down`

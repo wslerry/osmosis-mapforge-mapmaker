@@ -2,3 +2,7 @@
 *.osm
 *.map
 *.poi
+
+test/
+
+docker-compose.yml
