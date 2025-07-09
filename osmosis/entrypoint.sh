@@ -4,19 +4,25 @@
 
 figlet -t "OSM To Mapforge"
 
-JAVACMD_OPTIONS="${JAVACMD_OPTIONS:=-Xmx1g -Xms1g}"
-CPU_THREADS="${CPU_THREADS:=4}"
+JAVACMD_OPTIONS=${JAVACMD_OPTIONS:=-Xmx2g -Xms2g}
+CPU_THREADS=${CPU_THREADS:=4}
 INPUT_DIR="/data/input"
 OUTPUT_DIR="/data/output"
-BBOX=${BBOX}
-OSM_FILE="${OSM_FILE}"
-MAPFORGE_MAP_FILE="${MAPFORGE_MAP_FILE:-'output.map'}"
-MAPFORGE_POI_FILE="${MAPFORGE_POI_FILE:-'output.poi'}"
+BBOX=${BBOX:--7.1986095,104.571669609,8.3333731,140.6130556}
+OSM_FILE="${OSM_FILE:-borneo-latest.osm.pbf}"
+MAPFORGE_MAP_FILE="${MAPFORGE_MAP_FILE:-output.map}"
+MAPFORGE_POI_FILE="${MAPFORGE_POI_FILE:-output.poi}"
 
 echo "-------------------------------------------------------------------------------"
 echo "                               CREATE MAPFILE                                  "
 echo "-------------------------------------------------------------------------------"
 echo ""
+
+function merge_ocean() {
+    echo "--- Merge OSM PBF with Ocean/Water layer..."
+    osmosis --read-pbf file=${INPUT_DIR}/${OSM_FILE} --sort --write-pbf file=${INPUT_DIR}/borneo-latest-sorted.osm.pbf
+    osmosis --rb file=${INPUT_DIR}/borneo-latest-sorted.osm.pbf --rx file=${INPUT_DIR}/borneo_water.osm --s --m --wb file=${OUTPUT_DIR}/merge.osm.pbf
+}
 
 function create_mapforge_map() {
     echo "--- Convert OSM PBF into Mapforge map format"
@@ -50,8 +56,11 @@ else
             check_exist
             create_mapforge_poi
             ;;
+        "merge")
+            merge_ocean
+            ;;
         *)
-            echo "Usage: $0 {map|poi}" >&2
+            echo "Usage: $0 {map|poi|merge}" >&2
             exit 1
             ;;
     esac

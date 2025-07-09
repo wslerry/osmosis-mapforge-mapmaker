@@ -1,0 +1,28 @@
+ C:\Container_dev\osmosis_mapforge_docker\data\input :: git(master)                                  3.10.16 17:41:40
+➜ osmium merge borneo-latest-sorted.osm.pbf borneo_water.osm -o borneo-osmium-sort.osm.pbf
+[======================================================================] 100%
+Objects in input file 'borneo_water.osm' out of order (must be nodes, then ways, then relations).
+
+ C:\Container_dev\osmosis_mapforge_docker\data\input :: git(master)                                  3.10.16 17:42:42
+➜ osmium sort -o borneo_water.osm.pbf borneo_water.osm
+[======================================================================] 100%
+
+ C:\Container_dev\osmosis_mapforge_docker\data\input :: git(master)                                  3.10.16 17:43:46
+➜ osmium merge borneo-latest-sorted.osm.pbf borneo_water.osm.pbf -o borneo-osmium-sort.osm.pbf
+Open failed for 'borneo-osmium-sort.osm.pbf': The system cannot move the file to a different disk drive.. Try using --overwrite if you are sure you want to overwrite the file.
+
+ C:\Container_dev\osmosis_mapforge_docker\data\input :: git(master)                                  3.10.16 17:44:01
+➜ osmium merge borneo-latest-sorted.osm.pbf borneo_water.osm.pbf -o borneo-osmium-sort.osm.pbf --overwrite
+Warning: Multiple objects with same id in input file 'borneo-latest-sorted.osm.pbf'!
+If you are reading history files, this is to be expected. Use --with-history to disable warning.
+
+
+ C:\Container_dev\osmosis_mapforge_docker\data\input :: git(master)                                  3.10.16 17:44:13
+➜ osmium merge borneo-latest-sorted.osm.pbf borneo_water.osm.pbf -o borneo-osmium-sort.osm.pbf --overwrite
+Warning: Multiple objects with same id in input file 'borneo-latest-sorted.osm.pbf'!
+If you are reading history files, this is to be expected. Use --with-history to disable warning.
+
+
+ C:\Container_dev\osmosis_mapforge_docker\data\input :: git(master)                                                3.10.16 17:44:44
+➜ osmium merge borneo-latest-sorted.osm.pbf borneo_water.osm.pbf -o borneo-osmium-sort.osm.pbf --overwrite --with-history
+[======================================================================] 100%

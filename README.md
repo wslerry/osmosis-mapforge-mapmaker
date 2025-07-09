@@ -12,7 +12,7 @@ Generate offline map for android using osmosis
         .
         .
         .
-
+    
         environment:
             - OSM_FILE=borneo-latest.osm.pbf
             - MAPFORGE_MAP_FILE=borneo.map
@@ -23,7 +23,7 @@ Generate offline map for android using osmosis
         .
         .
         .
-
+    
     ```
 
 ## Usage
@@ -32,8 +32,24 @@ Change `docker-compose.template` into `docker-compose.yml` before running `docke
 
 1. Build
     - `docker compose build`
+
 2. Run osmosis
     - `docker compose up`
     - or `docker compose up osmosis`
+
 3. Remove container
     - `docker compose down`
+
+4. Or run using `docker run`
+
+    ```bash
+    docker run -it -v %cd%/data/input:/data/input -v %cd%/data/output:/data/output -e JAVACMD_OPTIONS="-Xmx8g -Xms8g" -e CPU_THREADS=8 --rm lerryws/osmosis:latest ./entrypoint.sh map
+    
+    # or
+    docker run -it -v %cd%/data/input:/data/input -v %cd%/data/output:/data/output -e JAVACMD_OPTIONS="-Xmx8g -Xms8g" -e CPU_THREADS=8 --rm lerryws/osmosis:latest ./entrypoint.sh poi
+    
+    # or
+    docker run -it -v %cd%/data/input:/data/input -v %cd%/data/output:/data/output -e JAVACMD_OPTIONS="-Xmx8g -Xms8g" -e CPU_THREADS=8 --rm lerryws/osmosis:latest ./entrypoint.sh merge
+    ```
+
+    
